@@ -17,3 +17,14 @@ removeNonUppercase st = [c | c <- st, c `elem` ['A'..'Z']]
 removeNonUppercase "Ivaldo"
 
 --Tuplas
+
+fst (8, 11)
+
+snd ("Wow", False)
+
+zip [1..5]["um", "dois", "tres", "quatro", "cinco"]
+
+zip [1..] ["banana", "laranja", "melancia", "uva"]
+
+rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24]
+
