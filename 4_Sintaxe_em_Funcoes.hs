@@ -23,9 +23,6 @@ addVectors' (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
 first :: (a, b, c) -> a
 first (x, _, _) = x
 
-head' [] = error "Proibido chamar head em uma lista vazia, vdc!"
-head' (x:_) = x
-
 tell [] = "A lista está vazia"
 tell (x:[]) = "A lista tem apenas um elemento: " ++ show x
 tell (x:y:[]) = "A lista tem dois elementos: " ++ show x ++ " e " ++ show y
@@ -64,3 +61,30 @@ bmiTell2 weight height
          skinny = 18.5
          normal = 25.0
          fat = 30.0
+
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
+   where (f:_) = firstname
+         (l:_) = lastname
+
+cylinder :: (RealFloat a) => a -> a -> a
+cylinder r h =
+   let sideArea = 2 * pi * r * h
+       topArea = pi * r ^2
+   in  sideArea + 2 * topArea
+
+letExample = 4 * (let a = 9 in a + 1) + 2
+
+letPatternMachExample = (let (a,b,c) = (1,2,3) in a+b+c) * 100
+
+calcBmisFat :: (RealFloat a) => [(a, a)] -> [a]
+calcBmisFat xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2, bmi >= 25.0]
+
+head' :: [a] -> a
+head' xs = case xs of [] -> error "Nao existe head em listas vazias!"
+                      (x:_) -> x
+
+describeList :: [a] -> String
+describeList xs = "A lista é " ++ case xs of [] -> "Vazia."
+                                             [x] -> "Uma lista unitaria."
+                                             xs -> "Uma lista grande"
